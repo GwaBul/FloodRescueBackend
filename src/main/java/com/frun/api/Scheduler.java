@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 public class Scheduler {
     private final FloodApiService floodApiService;
 
-    @Scheduled(fixedRate = 10000)
-    public void schedule() {
-        floodApiService.test();
-
-    }
+//    @Scheduled(fixedRate = 10000)
+//    public void schedule() {
+//        floodApiService.test();
+//
+//    }
 }
