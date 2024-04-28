@@ -15,5 +15,6 @@ public class Scheduler {
     @Scheduled(fixedRate = 10000)
     public void schedule() {
         floodApiService.test();
+
     }
 }
