@@ -1,2 +1,9 @@
 .gradle
 .idea
+build
+gradle
+gradlew
+gradlew.bat
+settings.gradle
+src/main/resources/application-dev.yml
+/src/main/resources/serviceAccountKey.json
