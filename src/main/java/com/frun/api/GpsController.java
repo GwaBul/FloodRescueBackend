@@ -1,18 +1,23 @@
 package com.frun.api;
 
 import com.frun.api.request.GpsRequest;
+import com.frun.api.response.GpsResponse;
+import com.frun.application.GpsAppService;
+import com.frun.domain.service.GpsService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
 @Slf4j
 public class GpsController {
-    @PostMapping("/gps")
-    public String getGps(@RequestBody GpsRequest.Send request) {
-        log.info(request.getX() + " , " + request.getY());
+    private final GpsAppService gpsAppService;
 
-        return request.getX() + " , " + request.getY();
+    @PostMapping("/gps")
+    public GpsResponse.Send getGps(@RequestBody GpsRequest.Send request) {
+        return gpsAppService.processGps(request);
     }
 }

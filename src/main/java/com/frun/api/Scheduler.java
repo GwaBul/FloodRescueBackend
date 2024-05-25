@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 public class Scheduler {
     private final AppService appService;
 
-    @Scheduled(fixedRate = 1000 * 60 * 5) // 5분마다 실행
-    void runProgram() {
-        appService.runProgram();
-    }
+//    @Scheduled(fixedRate = 1000 * 60 * 5) // 5분마다 실행
+//    void runProgram() {
+//        appService.runProgram();
+//    }
 }
