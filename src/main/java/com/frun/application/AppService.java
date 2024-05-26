@@ -1,5 +1,6 @@
 package com.frun.application;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.frun.domain.service.TokenService;
 import com.frun.domain.service.WeatherAlertService;
@@ -25,19 +26,29 @@ public class AppService {
     public void runProgram() {
         // 기상 특보 감지
         WeatherAlertService.WeatherAlert alert = weatherAlertService.isAlert();
-        if(! alert.getAlerted()) {
+        if (!alert.getAlerted()) {
             log.info("기상특보 없음");
             return;
         }
 
         // 토큰 목록 조회
         List<String> tokens = tokenService.fetchTokenList();
+
+        // cities 리스트를 JSON 문자열로 변환
+        String citiesJson;
+        try {
+            citiesJson = objectMapper.writeValueAsString(alert.getCities());
+        } catch (JsonProcessingException e) {
+            log.error("도시 리스트를 JSON으로 변환하는데 실패했습니다.", e);
+            return;
+        }
+
         // Message 생성
-        // todo: 특보 발령 도시 리스트 포함하여 보내기
         MulticastMessage messages = MulticastMessage.builder()
                 .addAllTokens(tokens)
-                .putData("push", "푸쉬")
+                .putData("cities", citiesJson)
                 .build();
+
         // Gps 요청 브로드캐스트
         try {
             BatchResponse response = messaging.sendEachForMulticast(messages);

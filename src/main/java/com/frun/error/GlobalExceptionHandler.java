@@ -16,6 +16,7 @@ public class GlobalExceptionHandler {
         HttpStatusCode status = ex.getStatusCode();
         String message = ex.getReason();
         log.error(ex.getMessage());
+        ex.printStackTrace();
 
         return new ResponseEntity<>(message, status);
     }
@@ -23,6 +24,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception ex) {
         log.error(ex.getMessage());
+        ex.printStackTrace();
 
         return new ResponseEntity<>("서버 내부 오류가 발생함.", HttpStatus.INTERNAL_SERVER_ERROR);
     }

@@ -3,6 +3,7 @@ package com.frun.domain.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class City {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long no;

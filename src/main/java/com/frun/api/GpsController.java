@@ -3,7 +3,6 @@ package com.frun.api;
 import com.frun.api.request.GpsRequest;
 import com.frun.api.response.GpsResponse;
 import com.frun.application.GpsAppService;
-import com.frun.domain.service.GpsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
